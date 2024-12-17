@@ -119,7 +119,7 @@ function playGame() {
 
 
          //runs playRound once user clicks a button
-         // LOOP
+      
         
          
          rockButton.addEventListener("click", function() {
