@@ -29,16 +29,22 @@ scissorsButton.setAttribute("id", "scissors");
 var gameBox = document.createElement("div");
 gameBox.style.border = "2px solid black";
 gameBox.style.width = "40%";
-gameBox.style.height = "50px";
+gameBox.style.height = "100px";
+
+var roundResult = document.createElement("div");
+roundResult.style.border = "2px solid red";
+roundResult.style.width = "100%";
+roundResult.style.height = "50%";
 
 
 var scoreUpdate = document.createElement("div");
 scoreUpdate.style.width = "100%";
-scoreUpdate.style.height = "50%";
+scoreUpdate.style.height = "40%";
 scoreUpdate.style.border = "2px solid green";
 
 
 gameBox.appendChild(scoreUpdate);
+gameBox.appendChild(roundResult);
 
 
 
@@ -73,42 +79,35 @@ function playGame() {
 
 
     //a function that takes the previously stored variables as paramters and based on
-    //the outcome presents a console log with a string showing who won.
+    
     function playRound (humanChoice, computerChoice) {
         if (humanChoice === computerChoice) {
-            gameBox.innerText = "It's a draw! Go again!";
+            roundResult.innerText = "It's a draw! Go again!";
         } else if (humanChoice === "rock" && computerChoice === "paper") {
-            gameBox.innerText = "You lose! Paper beats rock!";
+            roundResult.innerText = "You lose! Paper beats rock!";
             computerScore++;
         } else if (humanChoice === "paper" && computerChoice === "rock") {
-            gameBox.innerText = "You win! Paper beats rock!";
+            roundResult.innerText = "You win! Paper beats rock!";
             humanScore++;
         } else if (humanChoice === "scissors" && computerChoice ==="paper") {
-            gameBox.innerText = "You win! Scissors beats paper!";
+            roundResult.innerText = "You win! Scissors beats paper!";
             humanScore++;
         } else if (humanChoice === "paper" && computerChoice === "scissors") {
-            gameBox.innerText = "You lose! Scissors beats paper";
+            roundResult.innerText = "You lose! Scissors beats paper";
             computerScore++
         } else if (humanChoice === "rock" && computerChoice === "scissors") {
-            gameBox.innerText = "You win! Rock beats scissors!";
+            roundResult.innerText = "You win! Rock beats scissors!";
             humanScore++;
         } else if (humanChoice === "scissors" && computerChoice === "rock") {
-            gameBox.innerText = "You lose! Rock beats scissors!";
+            roundResult.innerText = "You lose! Rock beats scissors!";
             computerScore++
         } else {
-            gameBox.innerText = "error, try again";
+            roundResult.innerText = "error, try again";
         }
-        scoreUpdate.innerText = humanScore, computerScore;
+        scoreUpdate.innerText = humanScore + '' + ' - ' + computerScore + '';
     }
 
 
-if (humanScore > computerScore) {
-    console.log("YOU WON!!")
-} else if (computerScore > humanScore) {
-    console.log("YOU LOSE :(")
-} else {
-    console.log("WHAT. A. MATCH... IT'S A DRAW")
-}
 
          //runs playRound once user clicks a button
          rockButton.addEventListener("click", function() {
