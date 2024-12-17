@@ -67,20 +67,29 @@ this.document.body.appendChild(gameBox);
 
 
 
-
-
 function playGame() {
+
     //keeps track of the score
-        let humanScore = 0;
-        let computerScore = 0;
+    let humanScore = 0;
+    let computerScore = 0;
 
-   
-
+    
 
 
     //a function that takes the previously stored variables as paramters and based on
     
+    
     function playRound (humanChoice, computerChoice) {
+
+        if (humanScore > 4) {
+            gameBox.innerText = "GAME OVER! HUMAN WINS! " +  + humanScore + ' ' + "to " + computerScore + ' ';
+            gameBox.style.background = "green";
+            return;
+        } else if (computerScore > 4) {
+            gameBox.innerText = "GAME OVER! COMPUTER WINS! " + computerScore + ' ' + "to " + humanScore + ' ';
+            gameBox.style.background = "red";
+            return;
+        }
         if (humanChoice === computerChoice) {
             roundResult.innerText = "It's a draw! Go again!";
         } else if (humanChoice === "rock" && computerChoice === "paper") {
@@ -110,6 +119,9 @@ function playGame() {
 
 
          //runs playRound once user clicks a button
+         // LOOP
+        
+         
          rockButton.addEventListener("click", function() {
             playRound("rock", getComputerChoice())
          });
@@ -121,8 +133,11 @@ function playGame() {
          scissorsButton.addEventListener("click", function() {
             playRound("scissors", getComputerChoice())
          })
+        
+        
 
 }
+
 
 //plays the entire game, with 5 rounds
 playGame()
